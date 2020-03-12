@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
-require "bundle/setup"
+require "bundler/setup"
 require "StarWarsFacts"
 
+StarWarsFacts::CLI.new.start

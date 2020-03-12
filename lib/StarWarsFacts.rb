@@ -6,6 +6,7 @@ require "StarWarsFacts/cli"
 
 #dependencies
 require "pry"
+require "httparty"
 
 module StarWarsFacts
   class Error < StandardError; end

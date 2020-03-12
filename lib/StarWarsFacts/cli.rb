@@ -25,7 +25,21 @@ class StarWarsFacts::CLI
     def start
         puts "Hold while your facts are retrieved from a galaxy far, far away..."
         puts "Welcome to StarWars Facts!"
-        
+        display_info
+    end
+
+    def display_info
+        puts "please make a selection:"
+        input = gets.strip.downcase
+        if input == "jedi"
+            puts "============JEDI============"
+            puts "list of known jedi"
+        elsif input == "sith"
+            puts "============SITH============"
+            puts "list of known sith"
+        else
+            puts "try again!"
+        end
     end
 
 end

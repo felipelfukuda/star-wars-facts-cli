@@ -23,23 +23,42 @@ class StarWarsFacts::CLI
 
 
     def start
-        puts "Hold while your facts are retrieved from a galaxy far, far away..."
         puts "Welcome to StarWars Facts!"
+        puts "Hold while your facts are retrieved from a galaxy far, far away..."
+        # @data = StarWarsFacts::Api.get_data (api.rb method )
+        # @objects = StarWarsFacts::Info.all (info.rb class method)
         display_info
     end
 
     def display_info
         puts "please make a selection:"
+        #right here would go:
+        #@objects.each.with_index(1) {|obj| puts "#{index}. #{obj.name} - #{obj.age}"
+        #to display my list of objects to make a choice, depending on choices and attributes i represent
         input = gets.strip.downcase
-        if input == "jedi"
-            puts "============JEDI============"
+        if input == "1"
+            puts "============movies============"
             puts "list of known jedi"
-        elsif input == "sith"
-            puts "============SITH============"
+            #1 obi wan
+            #2 anakin skywalker
+            #3 mace windu
+            # 4 yoda
+            display_info
+        elsif input == "locations"
+            puts "============locations============"
             puts "list of known sith"
+            #1 emperor palpatine
+            #2 darth vader
+            #3 emperor snoke
+            #4 kylo ren
+            display_info
         else
-            puts "try again!"
+            quit
         end
+    end
+
+    def quit
+        puts "goodbye"
     end
 
 end

@@ -3,6 +3,8 @@
 
 require "StarWarsFacts/version"
 require "StarWarsFacts/cli"
+require "StarWarsFacts/api"
+require "StarWarsFacts/info"
 
 #dependencies
 require "pry"

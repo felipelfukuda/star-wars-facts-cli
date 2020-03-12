@@ -24,10 +24,15 @@ class StarWarsFacts::CLI
 
     def start
         puts "Welcome to StarWars Facts!"
-        puts "Hold while your facts are retrieved from a galaxy far, far away..."
+        puts "Please choose from the following options:"
+        puts "People ||||||| Planets ||||||| Starships"
+        input = gets.strip.downcase
+        case 
         # @data = StarWarsFacts::Api.get_data (api.rb method )
         # @objects = StarWarsFacts::Info.all (info.rb class method)
-        display_info
+        @data = StarWarsFacts::API.get_people(input)
+        @objects = StarWarsFacts::Info.all
+        binding.pry
     end
 
     def display_info

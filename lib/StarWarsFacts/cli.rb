@@ -23,7 +23,7 @@ class StarWarsFacts::CLI
 
 
     def start
-        puts "Welcome to StarWars Character Facts!"
+        puts "----GALACTIC EMPIRE MOST WANTED FUGITIVES DATABASE----"
         puts "Please choose 1-9:"
         puts "1. Luke Skywalker"
         puts "2. C3PO"
@@ -46,7 +46,7 @@ class StarWarsFacts::CLI
 
   
     def display_info
-        puts "----------GALACTIC REPUBLIC DATABASE----------"
+        puts "----------PROCESSING YOUR INQUIRY----------"
         puts "-----------------------------------------------"
         puts "Here are the specifications on ..... #{@data.name}"
         @objects.each do |key|

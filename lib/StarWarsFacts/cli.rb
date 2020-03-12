@@ -46,7 +46,9 @@ class StarWarsFacts::CLI
 
   
     def display_info
-        puts "GALACTIC REPUBLIC DATABASE INQUIRY: #{@data.name}"
+        puts "----------GALACTIC REPUBLIC DATABASE----------"
+        puts "-----------------------------------------------"
+        puts "Here are the specifications on ..... #{@data.name}"
         @objects.each do |key|
             puts "#{key.name}"
         binding.pry

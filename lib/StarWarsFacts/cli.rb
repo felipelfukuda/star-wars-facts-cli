@@ -23,43 +23,38 @@ class StarWarsFacts::CLI
 
 
     def start
-        puts "Welcome to StarWars Facts!"
-        puts "Please choose from the following options:"
-        puts "People ||||||| Planets ||||||| Starships"
+        puts "Welcome to StarWars Character Facts!"
+        puts "Please choose 1-9:"
+        puts "1. Luke Skywalker"
+        puts "2. C3PO"
+        puts "3. R2D2"
         input = gets.strip.downcase
-        case 
+        # case gets.strip.downcase
+        # when 'people'
+        #     choice == "1"
+        # when 'planets'
+        #     choice == "2"
+        # when 'starships'
+        #     choice == "3"
+        # end
         # @data = StarWarsFacts::Api.get_data (api.rb method )
         # @objects = StarWarsFacts::Info.all (info.rb class method)
         @data = StarWarsFacts::API.get_people(input)
         @objects = StarWarsFacts::Info.all
-        binding.pry
+        display_info
     end
 
+  
     def display_info
-        puts "please make a selection:"
+        puts "GALACTIC REPUBLIC DATABASE INQUIRY: #{@data.name}"
+        @objects.each do |key|
+            puts "#{key.name}"
+        binding.pry
+        end
         #right here would go:
         #@objects.each.with_index(1) {|obj| puts "#{index}. #{obj.name} - #{obj.age}"
         #to display my list of objects to make a choice, depending on choices and attributes i represent
-        input = gets.strip.downcase
-        if input == "1"
-            puts "============movies============"
-            puts "list of known jedi"
-            #1 obi wan
-            #2 anakin skywalker
-            #3 mace windu
-            # 4 yoda
-            display_info
-        elsif input == "locations"
-            puts "============locations============"
-            puts "list of known sith"
-            #1 emperor palpatine
-            #2 darth vader
-            #3 emperor snoke
-            #4 kylo ren
-            display_info
-        else
-            quit
-        end
+      
     end
 
     def quit

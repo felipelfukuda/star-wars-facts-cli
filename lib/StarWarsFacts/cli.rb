@@ -23,9 +23,17 @@ class StarWarsFacts::CLI
         puts "9. Master Yoda" #people/20/
         puts "10. General Ackbar" #people/27/
         input = gets.strip.downcase
+        #here would go if input == (1..10) but it doesnt work
         @data = StarWarsFacts::API.get_people(input)
         @objects = StarWarsFacts::Info.all
         display_info
+        # elsif input == "exit"
+        #     exit
+        # else
+        #     puts "INCORRECT INPUT DETECTED!"
+        #     start
+        # end
+
     end
 
     #problem where the second input after "Y" will display information from the same choice as the first time
@@ -39,7 +47,6 @@ class StarWarsFacts::CLI
             puts "GENDER :: #{subject.gender.upcase}"
             puts "HEIGHT :: #{subject.height.upcase}"
             puts "HAIR COLOR :: #{subject.hair_color.upcase}"
-            binding.pry
         puts "WOULD YOU LIKE TO VIEW ANOTHER BOUNTY?"
         puts "--------Y/N?------------"
         input = gets.strip.downcase
@@ -54,9 +61,18 @@ class StarWarsFacts::CLI
             sleep 1
             puts "UPLOAD COMPLETE!"
             sleep 1
-            puts "GOODBYE AND HAPPY HUNTING"
-            sleep 1
+            puts "IF SUCCESSFUL PLEASE RETRIEVE BOUNTY AT NEAREST GALACTIC EMPIRE OUTPOST"
+            sleep 2
+            puts "THE GALACTIC EMPIRE IS NOT LIABLE FOR YOUR SAFETY AND CLAIMS NO RESPONSIBILITY SHOULD YOU PERISH"
+            sleep 2
+            puts "HAPPY HUNTING"
             exit
+        else
+            puts "INCORRECT INPUT DETECTED!"
+            sleep 1
+            puts "LOADING MAIN DATABASE......"
+            sleep 2
+            start
         end
         end
       

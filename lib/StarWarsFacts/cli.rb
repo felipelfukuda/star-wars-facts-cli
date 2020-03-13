@@ -28,6 +28,13 @@ class StarWarsFacts::CLI
         puts "1. Luke Skywalker"
         puts "2. C3PO"
         puts "3. R2D2"
+        puts "4. "
+        puts "5. "
+        puts "6. "
+        puts "7. "
+        puts "8. "
+        puts "9. "
+        puts "10. "
         input = gets.strip.downcase
         # case gets.strip.downcase
         # when 'people'

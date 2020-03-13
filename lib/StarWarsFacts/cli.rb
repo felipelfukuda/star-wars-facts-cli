@@ -11,20 +11,32 @@ class StarWarsFacts::CLI
     end
 
     def start
-        # full_array = [1, 2, 3, 14, 13, 10, 25, 5, 20, 27]
-        # StarWarsFacts::API.get_people(full_array)
-        puts "----GALACTIC EMPIRE MOST WANTED FUGITIVES DATABASE----"
-        puts "Please choose 1-10:"
-        puts "1. Luke Skywalker" #people/1
-        puts "2. C3PO" #people/2
-        puts "3. R2D2" #people/3
-        puts "4. Han Solo"  #people/14/
-        puts "5. Chewbacca" #people/13/
-        puts "6. Obi Wan Kenobi" #people/10/
-        puts "7. Lando Calrissian" #people/25/
-        puts "8. Leia Organa" #people/5/
-        puts "9. Master Yoda" #people/20/
-        puts "10. General Ackbar" #people/27/
+        # add color to initial screen text
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
+        puts "=-=-GALACTIC EMPIRE MOST WANTED FUGITIVES DATABASE-=-="
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
+        puts ""
+        puts "ID : 1 - Luke Skywalker - CURRENT BOUNTY : 50,000,000 CREDITS" 
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
+        puts "ID : 2 - C3PO - CURRENT BOUNTY : 5,000,000 CREDITS" 
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
+        puts "ID : 3 - R2D2 - CURRENT BOUNTY : 10,000,000 CREDITS" 
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
+        puts "ID : 4 - Han Solo - CURRENT BOUNTY : 25,000,000 CREDITS"
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"  
+        puts "ID : 5 - Chewbacca - CURRENT BOUNTY : 25,000,000 CREDITS"
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" 
+        puts "ID : 6 - Obi Wan Kenobi - CURRENT BOUNTY : 40,000,000 CREDITS"
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" 
+        puts "ID : 7 - Lando Calrissian - CURRENT BOUNTY : 10,000,000 CREDITS"
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
+        puts "ID : 8 - Leia Organa - CURRENT BOUNTY : 45,000,000 CREDITS"
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" 
+        puts "ID : 9 - Master Yoda - CURRENT BOUNTY : 100,000,000 CREDITS"
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" 
+        puts "ID : 10 - General Ackbar - CURRENT BOUNTY : 3,000,000 CREDITS"
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" 
+        puts "PLEASE SELECT TARGET ID:"
 
         input = gets.strip.downcase
 
@@ -53,25 +65,28 @@ class StarWarsFacts::CLI
             quit
         end
 
+
         @people = StarWarsFacts::People.all
         @planets = StarWarsFacts::Planets.all
-        binding.pry
 
         display_info(choice)
 
     end
 
-    #problem where the second input after "Y" will display information from the same choice as the first time
+    
     def display_info(choice)
         @people = StarWarsFacts::People.all[choice.to_i-1]
         process
-            puts "NAME :: #{@objects.name.upcase}"
-            puts "BIRTH YEAR :: #{@objects.birth_year.upcase}"
-            puts "GENDER :: #{@objects.gender.upcase}"
-            puts "HEIGHT :: #{@objects.height.upcase}"
-            puts "HAIR COLOR :: #{@objects.hair_color.upcase}"
+            puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
+            puts "=-=-=-=-=-=-=    TARGET ID : #{choice}    =-=-=-=-=-=-="
+            puts "NAME :: #{@people.name.upcase}"
+            puts "BIRTH YEAR :: #{@people.birth_year.upcase}"
+            puts "GENDER :: #{@people.gender.upcase}"
+            puts "HEIGHT :: #{@people.height.upcase}"
+            puts "HAIR COLOR :: #{@people.hair_color.upcase}"
             puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
             puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
+        process_planet(choice)
         puts "WOULD YOU LIKE TO VIEW ANOTHER BOUNTY?"
         puts "-=-=-=-=-=-=-=-=-=-=Y // N-=-=-=-=-=-=-=-=-=-=-"
         input = gets.strip.downcase
@@ -79,20 +94,7 @@ class StarWarsFacts::CLI
         when "y"
             start
         when "n"
-            puts "UPLOADING BOUNTY TO YOUR TRACKING FOB"
-            sleep 1
-            puts "UPLOADING..."
-            sleep 1
-            puts "UPLOADING..."
-            sleep 1
-            puts "UPLOAD COMPLETE!"
-            sleep 1
-            puts "IF SUCCESSFUL PLEASE RETRIEVE BOUNTY AT NEAREST GALACTIC EMPIRE OUTPOST"
-            sleep 1
-            puts "THE GALACTIC EMPIRE IS NOT LIABLE FOR YOUR SAFETY AND CLAIMS NO RESPONSIBILITY SHOULD YOU PERISH"
-            sleep 1
-            puts "HAPPY HUNTING"
-            exit
+             n
         when "exit"
             quit
         end
@@ -107,10 +109,25 @@ class StarWarsFacts::CLI
     end
 
     def quit
-        puts "THE GALACTIC EMPIRE IS NOT LIABLE FOR YOUR SAFETY AND CLAIMS NO RESPONSIBILITY SHOULD YOU PERISH"
+        puts ""
+        puts "PLEASE NOTE:"
+        puts ""
+        sleep 1
+        puts "SHOULD YOU PERISH IN THE ACQUISITION OF A BOUNTY, THE GALACTIC EMPIRE TAKES NO RESPONSIBILITY"
+        puts ""
+        sleep 1
+        puts "AS SUCH, FUNERAL COSTS MUST BE COVERED BY NEXT OF KIN OR INSUROR"
+        puts ""
+        sleep 1
+        puts "THE GALACTIC EMPIRE DOES NOT REIMBURSE ION PARTICLE FUEL USED FOR SPACE TRAVEL"
+        puts ""
+        sleep 1
+        puts "ALL CLAIMS FILED IN REGARDS TO NOTICES ABOVE MAY RESULT IN PERSONAL INJURY "
+        puts ""
         sleep 1
         puts "HAPPY HUNTING"
         sleep 1
+        puts ""
         exit
     end
 
@@ -123,9 +140,67 @@ class StarWarsFacts::CLI
     end
 
     def process
-        puts "=-=-=-=-=-=-PROCESSING YOUR INQUIRY-=-=-=-=-=-="
-        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
-        puts "Here is the information on the bounty requested:"
+        sleep 1
+        puts "PROCESSING YOUR INQUIRY"
+        puts ''
+        sleep 2
+        puts "LOADING..."
+        puts ''
+        sleep 2
+        puts "LOADING..."
+        sleep 2
+
     end
 
+    def process_planet(choice)
+        puts "FOR INFORMATION ON TARGET HOME PLANET PLEASE ENTER 'PLANET'"
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
+        puts "WOULD YOU LIKE TO VIEW ANOTHER BOUNTY?"
+        puts "-=-=-=-=-=-=-=-=-=-=Y // N-=-=-=-=-=-=-=-=-=-=-"
+        input = gets.strip.downcase
+        if input == "planet"
+            process
+            @planets = StarWarsFacts::Planets.all[choice.to_i-1]
+            puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
+            puts "=-=-=-=-=-=-=TARGET PLANET : #{@planets.name.upcase}=-=-=-=-=-=-="
+            puts "POPULATION :: #{@planets.population.upcase}"
+            puts "CLIMATE :: #{@planets.climate.upcase}"
+            puts "TERRAIN :: #{@planets.terrain.upcase}"
+            puts "GRAVITY :: #{@planets.gravity.upcase}"
+        elsif input == "exit"
+            quit
+        elsif input == "y"
+            start
+        elsif input == "n"
+            n
+        else 
+            restart
+        end
+        
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
+    end
+
+    def n 
+        puts "UPLOADING BOUNTY TO YOUR TRACKING FOB"
+        puts ""
+        sleep 1
+        puts "UPLOADING..."
+        puts ""
+        sleep 1
+        puts "UPLOADING..."
+        puts ""
+        sleep 1
+        puts "UPLOAD COMPLETE!"
+        puts ""
+        sleep 1
+        puts "IF SUCCESSFUL PLEASE RETRIEVE BOUNTY AT NEAREST GALACTIC EMPIRE OUTPOST"
+        puts ""
+        sleep 1
+        puts "THE GALACTIC EMPIRE IS NOT LIABLE FOR YOUR SAFETY AND CLAIMS NO RESPONSIBILITY SHOULD YOU SUFFER DEATH OR INJURY"
+        puts ""
+        sleep 1
+        puts "HAPPY HUNTING"
+        exit
+    end
 end

@@ -2,11 +2,17 @@ class StarWarsFacts::CLI
 
 
 
-
+    def download
+        full_array = [1, 2, 3, 14, 13, 10, 25, 5, 20, 27]
+        full_array.map { |index| StarWarsFacts::API.get_people(index) }
+        start
+    end
 
     def start
+        # full_array = [1, 2, 3, 14, 13, 10, 25, 5, 20, 27]
+        # StarWarsFacts::API.get_people(full_array)
         puts "----GALACTIC EMPIRE MOST WANTED FUGITIVES DATABASE----"
-        puts "Please choose 1-9:"
+        puts "Please choose 1-10:"
         puts "1. Luke Skywalker" #people/1
         puts "2. C3PO" #people/2
         puts "3. R2D2" #people/3
@@ -17,7 +23,9 @@ class StarWarsFacts::CLI
         puts "8. Leia Organa" #people/5/
         puts "9. Master Yoda" #people/20/
         puts "10. General Ackbar" #people/27/
+
         input = gets.strip.downcase
+        
         case input
         when "1"
             choice = 1
@@ -26,47 +34,45 @@ class StarWarsFacts::CLI
         when "3"
             choice = 3
         when "4"
-            choice = 14
+            choice = 4
         when "5"
-            choice = 13
-        when "6"
-            choice = 10
-        when "7"
-            choice = 25
-        when "8"
             choice = 5
+        when "6"
+            choice = 6
+        when "7"
+            choice = 7
+        when "8"
+            choice = 8
         when "9"
-            choice = 20
+            choice = 9
         when "10"
-            choice = 27
+            choice = 10
         when "exit"
             quit
         end
-        @data = StarWarsFacts::API.get_people(choice)
+
         @objects = StarWarsFacts::Info.all
-        display_info(input)
+
+        display_info(choice)
 
     end
 
     #problem where the second input after "Y" will display information from the same choice as the first time
-    def display_info(input)
-        @objects = StarWarsFacts::Info.all
+    def display_info(choice)
+        @objects = StarWarsFacts::Info.all[choice.to_i-1]
         process
-        @objects.each do |subject|
-            puts "NAME :: #{subject.name.upcase}"
-            puts "BIRTH YEAR :: #{subject.birth_year.upcase}"
-            puts "GENDER :: #{subject.gender.upcase}"
-            puts "HEIGHT :: #{subject.height.upcase}"
-            puts "HAIR COLOR :: #{subject.hair_color.upcase}"
+            puts "NAME :: #{@objects.name.upcase}"
+            puts "BIRTH YEAR :: #{@objects.birth_year.upcase}"
+            puts "GENDER :: #{@objects.gender.upcase}"
+            puts "HEIGHT :: #{@objects.height.upcase}"
+            puts "HAIR COLOR :: #{@objects.hair_color.upcase}"
             puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
             puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
-        end
         puts "WOULD YOU LIKE TO VIEW ANOTHER BOUNTY?"
         puts "-=-=-=-=-=-=-=-=-=-=Y // N-=-=-=-=-=-=-=-=-=-=-"
         input = gets.strip.downcase
         case input
         when "y"
-            StarWarsFacts::Info.destroy_all
             start
         when "n"
             puts "UPLOADING BOUNTY TO YOUR TRACKING FOB"

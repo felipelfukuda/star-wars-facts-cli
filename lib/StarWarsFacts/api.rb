@@ -7,8 +7,8 @@
 class StarWarsFacts::API
 
     def self.get_people(input)
+
         @data_hash = HTTParty.get("https://swapi.co/api/people/#{input}/")
-        
         hash_objects = {
         name: @data_hash["name"],
         birth_year: @data_hash["birth_year"],
@@ -17,6 +17,7 @@ class StarWarsFacts::API
         height: @data_hash["height"]
         }
         StarWarsFacts::Info.new(hash_objects)
+
     end
 
 

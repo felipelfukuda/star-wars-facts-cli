@@ -1,7 +1,12 @@
 class StarWarsFacts::CLI
 
 
-
+    ##THIS WEEKENED:
+    ##TAKE COMMON METHODS AND MAKE INTO MODULES
+    ##LOOK AT CASE STATEMENTS
+    ##LOOK AT IF/ELSIF/ELSE STATMENTS
+    ##ADD COLOR TO TITLE AND LOADING SCREENS IF POSSIBLE
+    ##GOOD JOB FRANK, IT LOOKS PRETTY GOOD. 2 LEVELS DEEP AND A FUN THEME
     def download
         people_array = [1, 2, 3, 14, 13, 10, 25, 5, 20, 27]
         people_array.map { |index| StarWarsFacts::API.get_people(index) }

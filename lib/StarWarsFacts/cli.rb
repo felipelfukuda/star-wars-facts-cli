@@ -44,26 +44,29 @@ class StarWarsFacts::CLI
         end
         @data = StarWarsFacts::API.get_people(choice)
         @objects = StarWarsFacts::Info.all
-        display_info
+        display_info(input)
 
     end
 
     #problem where the second input after "Y" will display information from the same choice as the first time
-    def display_info
-        puts "----------PROCESSING YOUR INQUIRY----------"
-        puts "--------------------------------------------"
-        puts "Here are the specifications on ..... #{@data.name}"
+    def display_info(input)
+        @objects = StarWarsFacts::Info.all
+        process
         @objects.each do |subject|
             puts "NAME :: #{subject.name.upcase}"
             puts "BIRTH YEAR :: #{subject.birth_year.upcase}"
             puts "GENDER :: #{subject.gender.upcase}"
             puts "HEIGHT :: #{subject.height.upcase}"
             puts "HAIR COLOR :: #{subject.hair_color.upcase}"
+            puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
+            puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
+        end
         puts "WOULD YOU LIKE TO VIEW ANOTHER BOUNTY?"
-        puts "--------Y/N?------------"
+        puts "-=-=-=-=-=-=-=-=-=-=Y // N-=-=-=-=-=-=-=-=-=-=-"
         input = gets.strip.downcase
         case input
         when "y"
+            StarWarsFacts::Info.destroy_all
             start
         when "n"
             puts "UPLOADING BOUNTY TO YOUR TRACKING FOB"
@@ -83,6 +86,7 @@ class StarWarsFacts::CLI
         when "exit"
             quit
         end
+
         if input != "exit"
             restart
         elsif input != "n"
@@ -90,8 +94,6 @@ class StarWarsFacts::CLI
         elsif input != "y"
             restart
         end
-        end
-      
     end
 
     def quit
@@ -110,5 +112,10 @@ class StarWarsFacts::CLI
         start
     end
 
+    def process
+        puts "=-=-=-=-=-=-PROCESSING YOUR INQUIRY-=-=-=-=-=-="
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
+        puts "Here is the information on the bounty requested:"
+    end
 
 end

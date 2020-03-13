@@ -3,8 +3,10 @@ class StarWarsFacts::CLI
 
 
     def download
-        full_array = [1, 2, 3, 14, 13, 10, 25, 5, 20, 27]
-        full_array.map { |index| StarWarsFacts::API.get_people(index) }
+        people_array = [1, 2, 3, 14, 13, 10, 25, 5, 20, 27]
+        people_array.map { |index| StarWarsFacts::API.get_people(index) }
+        planet_array = [1, 1, 8, 22, 14, 20, 30, 2, 28, 31]
+        planet_array.map { |index| StarWarsFacts::API.get_planet(index)}
         start
     end
 
@@ -25,7 +27,7 @@ class StarWarsFacts::CLI
         puts "10. General Ackbar" #people/27/
 
         input = gets.strip.downcase
-        
+
         case input
         when "1"
             choice = 1
@@ -51,7 +53,9 @@ class StarWarsFacts::CLI
             quit
         end
 
-        @objects = StarWarsFacts::Info.all
+        @people = StarWarsFacts::People.all
+        @planets = StarWarsFacts::Planets.all
+        binding.pry
 
         display_info(choice)
 
@@ -59,7 +63,7 @@ class StarWarsFacts::CLI
 
     #problem where the second input after "Y" will display information from the same choice as the first time
     def display_info(choice)
-        @objects = StarWarsFacts::Info.all[choice.to_i-1]
+        @people = StarWarsFacts::People.all[choice.to_i-1]
         process
             puts "NAME :: #{@objects.name.upcase}"
             puts "BIRTH YEAR :: #{@objects.birth_year.upcase}"

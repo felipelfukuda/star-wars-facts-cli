@@ -5,11 +5,6 @@ class StarWarsFacts::CLI
 
 
     def start
-        #how to get input to search for the proper person on SWAPI??
-        #case input (input = gets.strip.to_i)
-        #when 1 input = however we get to people/1 (luke)
-        #when 2 input = however we get to people/4 (han solo)
-        #etc.
         puts "----GALACTIC EMPIRE MOST WANTED FUGITIVES DATABASE----"
         puts "Please choose 1-9:"
         puts "1. Luke Skywalker" #people/1
@@ -23,16 +18,33 @@ class StarWarsFacts::CLI
         puts "9. Master Yoda" #people/20/
         puts "10. General Ackbar" #people/27/
         input = gets.strip.downcase
-        #here would go if input == (1..10) but it doesnt work
-        @data = StarWarsFacts::API.get_people(input)
+        case input
+        when "1"
+            choice = 1
+        when "2"
+            choice = 2
+        when "3"
+            choice = 3
+        when "4"
+            choice = 14
+        when "5"
+            choice = 13
+        when "6"
+            choice = 10
+        when "7"
+            choice = 25
+        when "8"
+            choice = 5
+        when "9"
+            choice = 20
+        when "10"
+            choice = 27
+        when "exit"
+            quit
+        end
+        @data = StarWarsFacts::API.get_people(choice)
         @objects = StarWarsFacts::Info.all
         display_info
-        # elsif input == "exit"
-        #     exit
-        # else
-        #     puts "INCORRECT INPUT DETECTED!"
-        #     start
-        # end
 
     end
 
@@ -50,9 +62,10 @@ class StarWarsFacts::CLI
         puts "WOULD YOU LIKE TO VIEW ANOTHER BOUNTY?"
         puts "--------Y/N?------------"
         input = gets.strip.downcase
-        if input == "y"
+        case input
+        when "y"
             start
-        elsif input == "n"
+        when "n"
             puts "UPLOADING BOUNTY TO YOUR TRACKING FOB"
             sleep 1
             puts "UPLOADING..."
@@ -62,22 +75,40 @@ class StarWarsFacts::CLI
             puts "UPLOAD COMPLETE!"
             sleep 1
             puts "IF SUCCESSFUL PLEASE RETRIEVE BOUNTY AT NEAREST GALACTIC EMPIRE OUTPOST"
-            sleep 2
+            sleep 1
             puts "THE GALACTIC EMPIRE IS NOT LIABLE FOR YOUR SAFETY AND CLAIMS NO RESPONSIBILITY SHOULD YOU PERISH"
-            sleep 2
+            sleep 1
             puts "HAPPY HUNTING"
             exit
-        else
-            puts "INCORRECT INPUT DETECTED!"
-            sleep 1
-            puts "LOADING MAIN DATABASE......"
-            sleep 2
-            start
+        when "exit"
+            quit
+        end
+        if input != "exit"
+            restart
+        elsif input != "n"
+            restart
+        elsif input != "y"
+            restart
         end
         end
       
     end
 
+    def quit
+        puts "THE GALACTIC EMPIRE IS NOT LIABLE FOR YOUR SAFETY AND CLAIMS NO RESPONSIBILITY SHOULD YOU PERISH"
+        sleep 1
+        puts "HAPPY HUNTING"
+        sleep 1
+        exit
+    end
+
+    def restart
+        puts "INCORRECT INPUT DETECTED!"
+        sleep 1
+        puts "LOADING MAIN DATABASE......"
+        sleep 2
+        start
+    end
 
 
 end

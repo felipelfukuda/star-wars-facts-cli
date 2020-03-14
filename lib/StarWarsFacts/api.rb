@@ -32,4 +32,16 @@ class StarWarsFacts::API
         StarWarsFacts::Planets.new(planet_hash)
     end
 
+    def self.get_starship(input)
+
+        @data_hash = HTTParty.get("https://swapi.co/api/starships/#{input}/")
+        planet_hash = {
+        name: @data_hash["name"],
+        model: @data_hash["model"],
+        starship_class: @data_hash["starship_class"],
+        hypderdrive_rating: @data_hash["hypderdrive_rating"],
+        max_atmosphering_speed: @data_hash["max_atmosphering_speed"]
+        }
+        StarWarsFacts::Starships.new(planet_hash)
+    end
 end

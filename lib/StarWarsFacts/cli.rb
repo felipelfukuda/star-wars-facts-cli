@@ -2,9 +2,7 @@ class StarWarsFacts::CLI
 
 
     ##THIS WEEKENED:
-    ##TAKE COMMON METHODS AND MAKE INTO MODULES
-    ##LOOK AT CASE STATEMENTS
-    ##LOOK AT IF/ELSIF/ELSE STATMENTS
+    ##TAKE COMMON METHODS AND MAKE INTO MODULES -- NOT SURE IF REQUIRED - SAID METHODS ARE ONLY USED BY ONE CLASS    
     ##ADD COLOR TO TITLE AND LOADING SCREENS IF POSSIBLE
     ##GOOD JOB FRANK, IT LOOKS PRETTY GOOD. 2 LEVELS DEEP AND A FUN THEME
     def download
@@ -16,66 +14,17 @@ class StarWarsFacts::CLI
     end
 
     def start
-        # add color to initial screen text
-        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
-        puts "=-=-GALACTIC EMPIRE MOST WANTED FUGITIVES DATABASE-=-="
-        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
-        puts ""
-        puts "ID : 1 - Luke Skywalker - CURRENT BOUNTY : 50,000,000 CREDITS" 
-        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
-        puts "ID : 2 - C3PO - CURRENT BOUNTY : 5,000,000 CREDITS" 
-        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
-        puts "ID : 3 - R2D2 - CURRENT BOUNTY : 10,000,000 CREDITS" 
-        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
-        puts "ID : 4 - Han Solo - CURRENT BOUNTY : 25,000,000 CREDITS"
-        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"  
-        puts "ID : 5 - Chewbacca - CURRENT BOUNTY : 25,000,000 CREDITS"
-        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" 
-        puts "ID : 6 - Obi Wan Kenobi - CURRENT BOUNTY : 40,000,000 CREDITS"
-        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" 
-        puts "ID : 7 - Lando Calrissian - CURRENT BOUNTY : 10,000,000 CREDITS"
-        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
-        puts "ID : 8 - Leia Organa - CURRENT BOUNTY : 45,000,000 CREDITS"
-        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" 
-        puts "ID : 9 - Master Yoda - CURRENT BOUNTY : 100,000,000 CREDITS"
-        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" 
-        puts "ID : 10 - General Ackbar - CURRENT BOUNTY : 3,000,000 CREDITS"
-        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" 
-        puts "PLEASE SELECT TARGET ID:"
-
+        title_screen
         input = gets.strip.downcase
-
-        case input
-        when "1"
-            choice = 1
-        when "2"
-            choice = 2
-        when "3"
-            choice = 3
-        when "4"
-            choice = 4
-        when "5"
-            choice = 5
-        when "6"
-            choice = 6
-        when "7"
-            choice = 7
-        when "8"
-            choice = 8
-        when "9"
-            choice = 9
-        when "10"
-            choice = 10
-        when "exit"
+        if input == "f"
+        fugitive_menu
+        elsif input == "s"
+            puts "currently building!"
+            sleep 2
+            start
+        elsif input == "exit"
             quit
         end
-
-
-        @people = StarWarsFacts::People.all
-        @planets = StarWarsFacts::Planets.all
-
-        display_info(choice)
-
     end
 
     
@@ -92,14 +41,16 @@ class StarWarsFacts::CLI
             puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
             puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
         process_planet(choice)
-        puts "WOULD YOU LIKE TO VIEW ANOTHER BOUNTY?"
-        puts "-=-=-=-=-=-=-=-=-=-=Y // N-=-=-=-=-=-=-=-=-=-=-"
+        puts "TO VIEW ANOTHER BOUNTY : 'Y'"
+        puts "TO UPLOAD BOUNTY TO YOUR TRACKING FOB : 'N'"
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
+        puts "TO EXIT DATABASE PLEASE ENTER 'EXIT'"
         input = gets.strip.downcase
         case input
         when "y"
             start
         when "n"
-             n
+             upload
         when "exit"
             quit
         end
@@ -158,16 +109,18 @@ class StarWarsFacts::CLI
     end
 
     def process_planet(choice)
-        puts "FOR INFORMATION ON TARGET HOME PLANET PLEASE ENTER 'PLANET'"
+        puts "FOR INFORMATION ON TARGET HOME PLANET PLEASE ENTER 'P'"
         puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
-        puts "WOULD YOU LIKE TO VIEW ANOTHER BOUNTY?"
-        puts "-=-=-=-=-=-=-=-=-=-=Y // N-=-=-=-=-=-=-=-=-=-=-"
+        puts "TO VIEW ANOTHER BOUNTY : 'Y'"
+        puts "TO UPLOAD BOUNTY TO YOUR TRACKING FOB : 'N'"
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
+        puts "TO EXIT DATABASE PLEASE ENTER 'EXIT'"
         input = gets.strip.downcase
-        if input == "planet"
+        if input == "p"
             process
             @planets = StarWarsFacts::Planets.all[choice.to_i-1]
             puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
-            puts "=-=-=-=-=-=-=TARGET PLANET : #{@planets.name.upcase}=-=-=-=-=-=-="
+            puts "=-=-=-=-=-=-TARGET PLANET : #{@planets.name.upcase}-=-=-=-=-=-="
             puts "POPULATION :: #{@planets.population.upcase}"
             puts "CLIMATE :: #{@planets.climate.upcase}"
             puts "TERRAIN :: #{@planets.terrain.upcase}"
@@ -177,7 +130,7 @@ class StarWarsFacts::CLI
         elsif input == "y"
             start
         elsif input == "n"
-            n
+            upload
         else 
             restart
         end
@@ -186,7 +139,7 @@ class StarWarsFacts::CLI
         puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
     end
 
-    def n 
+    def upload
         puts "UPLOADING BOUNTY TO YOUR TRACKING FOB"
         puts ""
         sleep 1
@@ -207,5 +160,84 @@ class StarWarsFacts::CLI
         sleep 1
         puts "HAPPY HUNTING"
         exit
+    end
+
+    def fugitive_menu
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
+        puts "=-=-GALACTIC EMPIRE MOST WANTED FUGITIVES DATABASE-=-="
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
+        puts ""
+        puts "ID : 1 - Luke Skywalker - CURRENT BOUNTY : 50,000,000 CREDITS" 
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
+        puts "ID : 2 - C3PO - CURRENT BOUNTY : 5,000,000 CREDITS" 
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
+        puts "ID : 3 - R2D2 - CURRENT BOUNTY : 10,000,000 CREDITS" 
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
+        puts "ID : 4 - Han Solo - CURRENT BOUNTY : 25,000,000 CREDITS"
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"  
+        puts "ID : 5 - Chewbacca - CURRENT BOUNTY : 25,000,000 CREDITS"
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" 
+        puts "ID : 6 - Obi Wan Kenobi - CURRENT BOUNTY : 40,000,000 CREDITS"
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" 
+        puts "ID : 7 - Lando Calrissian - CURRENT BOUNTY : 10,000,000 CREDITS"
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
+        puts "ID : 8 - Leia Organa - CURRENT BOUNTY : 45,000,000 CREDITS"
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" 
+        puts "ID : 9 - Master Yoda - CURRENT BOUNTY : 100,000,000 CREDITS"
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" 
+        puts "ID : 10 - General Ackbar - CURRENT BOUNTY : 3,000,000 CREDITS"
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" 
+        puts "TO EXIT DATABASE PLEASE ENTER 'EXIT'"
+        puts "          OR             "
+        puts "PLEASE SELECT TARGET ID:"
+        input = gets.strip.downcase
+        if ("1".."10").include?(input)
+            case input
+                when "1"
+                    choice = 1
+                when "2"
+                    choice = 2
+                when "3"
+                    choice = 3
+                when "4"
+                    choice = 4
+                when "5"
+                    choice = 5
+                when "6"
+                    choice = 6
+                when "7"
+                    choice = 7
+                when "8"
+                    choice = 8
+                when "9"
+                    choice = 9
+                when "10"
+                    choice = 10
+                end
+        elsif input == "exit"
+            quit
+        else
+            restart
+        end
+
+        display_info(choice)
+    end
+
+    def starship_menu
+        #millenium falcon : starships/10
+    end
+
+
+    def title_screen
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
+        puts "=-=-=-=-GALACTIC EMPIRE MOST WANTED DATABASE-=-=-=-=-="
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
+        puts ""
+        puts "TO BROWSE MOST WANTED SPACESHIPS : 'S'"
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
+        puts "TO BROWSE MOST WANTED FUGITIVES : 'F'" 
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
+        puts "TO EXIT DATABASE PLEASE ENTER 'EXIT'"
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
     end
 end

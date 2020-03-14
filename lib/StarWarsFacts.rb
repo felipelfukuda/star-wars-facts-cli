@@ -6,6 +6,7 @@ require "StarWarsFacts/cli"
 require "StarWarsFacts/api"
 require "StarWarsFacts/people"
 require "StarWarsFacts/planets"
+require "StarWarsFacts/starships"
 
 #dependencies
 require "pry"

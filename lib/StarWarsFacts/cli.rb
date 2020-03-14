@@ -10,6 +10,8 @@ class StarWarsFacts::CLI
         people_array.map { |index| StarWarsFacts::API.get_people(index) }
         planet_array = [1, 1, 8, 22, 14, 20, 30, 2, 28, 31]
         planet_array.map { |index| StarWarsFacts::API.get_planet(index)}
+        # starship_array = [10, 0]
+        # starship_array.map { |index| StarWarsFacts::API.get_starship(index)}
         start
     end
 
@@ -20,6 +22,7 @@ class StarWarsFacts::CLI
         fugitive_menu
         elsif input == "s"
             puts "currently building!"
+            #display_starship(choice)
             sleep 2
             start
         elsif input == "exit"
@@ -28,7 +31,7 @@ class StarWarsFacts::CLI
     end
 
     
-    def display_info(choice)
+    def display_people(choice)
         @people = StarWarsFacts::People.all[choice.to_i-1]
         process
             puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
@@ -40,28 +43,8 @@ class StarWarsFacts::CLI
             puts "HAIR COLOR :: #{@people.hair_color.upcase}"
             puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
             puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
-        process_planet(choice)
-        puts "TO VIEW ANOTHER BOUNTY : 'Y'"
-        puts "TO UPLOAD BOUNTY TO YOUR TRACKING FOB : 'N'"
-        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
-        puts "TO EXIT DATABASE PLEASE ENTER 'EXIT'"
-        input = gets.strip.downcase
-        case input
-        when "y"
-            start
-        when "n"
-             upload
-        when "exit"
-            quit
-        end
+        display_planet(choice)
 
-        if input != "exit"
-            restart
-        elsif input != "n"
-            restart
-        elsif input != "y"
-            restart
-        end
     end
 
     def quit
@@ -108,7 +91,7 @@ class StarWarsFacts::CLI
 
     end
 
-    def process_planet(choice)
+    def display_planet(choice)
         puts "FOR INFORMATION ON TARGET HOME PLANET PLEASE ENTER 'P'"
         puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
         puts "TO VIEW ANOTHER BOUNTY : 'Y'"
@@ -125,6 +108,8 @@ class StarWarsFacts::CLI
             puts "CLIMATE :: #{@planets.climate.upcase}"
             puts "TERRAIN :: #{@planets.terrain.upcase}"
             puts "GRAVITY :: #{@planets.gravity.upcase}"
+            puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
+            puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
         elsif input == "exit"
             quit
         elsif input == "y"
@@ -134,9 +119,18 @@ class StarWarsFacts::CLI
         else 
             restart
         end
-        
+        puts "TO VIEW ANOTHER BOUNTY : 'Y'"
+        puts "TO UPLOAD BOUNTY TO YOUR TRACKING FOB : 'N'"
         puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
-        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
+        puts "TO EXIT DATABASE PLEASE ENTER 'EXIT'"
+        input = gets.strip.downcase
+        if input == "exit"
+            quit
+        elsif input == "y"
+            start
+        elsif input == "n"
+            upload
+        end
     end
 
     def upload
@@ -220,11 +214,26 @@ class StarWarsFacts::CLI
             restart
         end
 
-        display_info(choice)
+        display_people(choice)
     end
 
     def starship_menu
+
+
+    def display_starship(choice)
+        @starships = StarWarsFacts::Starships.all[choice.to_i-1]
         #millenium falcon : starships/10
+        
+
+
+
+
+        puts "TO VIEW ANOTHER BOUNTY : 'Y'"
+        puts "TO UPLOAD BOUNTY TO YOUR TRACKING FOB : 'N'"
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
+        puts "TO EXIT DATABASE PLEASE ENTER 'EXIT'"
+        input = gets.strip.downcase
+
     end
 
 

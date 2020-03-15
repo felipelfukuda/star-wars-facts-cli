@@ -17,7 +17,6 @@ class StarWarsFacts::CLI
     end
 
     def start
-        process
         title_screen
         input = gets.strip.downcase
         if input == "f"
@@ -26,6 +25,8 @@ class StarWarsFacts::CLI
             starship_menu
         elsif input == "exit"
             quit
+        else
+            restart
         end
     end
 
@@ -266,12 +267,12 @@ class StarWarsFacts::CLI
         sleep 1
         puts "PROCESSING YOUR INQUIRY"
         puts ''
-        sleep 2
+        sleep 1
         puts "LOADING..."
         puts ''
-        sleep 2
+        sleep 1
         puts "LOADING..."
-        sleep 2
+        sleep 1
 
     end
 
@@ -280,7 +281,7 @@ class StarWarsFacts::CLI
         puts "INCORRECT INPUT DETECTED!"
         sleep 1
         puts "LOADING MAIN DATABASE......"
-        sleep 2
+        sleep 1
         start
     end
 

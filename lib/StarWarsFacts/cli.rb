@@ -5,7 +5,7 @@ class StarWarsFacts::CLI
     ##TAKE COMMON METHODS AND MAKE INTO MODULES -- NOT SURE IF REQUIRED - SAID METHODS ARE ONLY USED BY ONE CLASS    
     ##ADD COLOR TO TITLE AND LOADING SCREENS IF POSSIBLE
     ##GOOD JOB FRANK, IT LOOKS PRETTY GOOD. 2 LEVELS DEEP AND A FUN THEME
-    
+
     def download
         people_array = [1, 2, 3, 14, 13, 10, 25, 5, 20, 27]
         people_array.map { |index| StarWarsFacts::API.get_people(index) }
@@ -17,6 +17,7 @@ class StarWarsFacts::CLI
     end
 
     def start
+        process
         title_screen
         input = gets.strip.downcase
         if input == "f"

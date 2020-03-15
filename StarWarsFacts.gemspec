@@ -6,8 +6,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["felipelfukuda"]
   spec.email         = ["felipelfukuda@gmail.com"]
 
-  spec.summary       = "Ruby CLI App - Star Wars Facts"
-  spec.description   = "Uses API to get Star Wars Movie and Universe Facts"
+  spec.summary       = "Ruby CLI App - Star Wars Facts - GALACTIC EMPIRE BOUNTY DATABASE"
+  spec.description   = "Uses SWAPI.co API to access data on the galaxy's most wanted fugitives and starships!"
   spec.homepage      = "https://github.com/felipelfukuda/star-wars-facts-cli"
   spec.license       = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")

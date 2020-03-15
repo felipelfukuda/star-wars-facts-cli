@@ -1,8 +1,11 @@
 # StarWarsFacts
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/StarWarsFacts`. To experiment with that code, run `bin/console` for an interactive prompt.
+Welcome to the StarWarsFacts - GALACTIC EMPIRE BOUNTY DATABASE Gem!
 
-TODO: Delete this and the text above, and describe your gem
+This gem is the perfect tool for both the aspiring and seasoned bounty hunter! Within you'll find access to the most wanted
+starships and fugitives in the galaxy!
+
+DISCLAIMER ::: THE GALACTIC EMPIRE TAKES NO RESPONSIBILITY FOR INJURIED SUFFERED IN THE ACQUISITION OF A BOUNTY!
 
 ## Installation
 
@@ -22,7 +25,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Run ruby bin/StarWarsFacts after installation and follow the instructions!
 
 ## Development
 

@@ -215,9 +215,9 @@ class StarWarsFacts::CLI
 
 
     def title_screen
-        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
-        puts "=-=-=-=-GALACTIC EMPIRE MOST WANTED DATABASE-=-=-=-=-="
-        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
+        puts Rainbow("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-").red
+        puts Rainbow("=-=-=-=-").red + Rainbow("GALACTIC EMPIRE MOST WANTED DATABASE").white + Rainbow("-=-=-=-=-=").red
+        puts Rainbow("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-").red
         puts ""
         puts "TO BROWSE MOST WANTED SPACESHIPS : 'S'"
         puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
@@ -308,6 +308,5 @@ class StarWarsFacts::CLI
         puts ""
         exit
     end
-
 
 end

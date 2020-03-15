@@ -1,10 +1,8 @@
 class StarWarsFacts::CLI
 
 
-    ##THIS WEEKENED:
-    ##TAKE COMMON METHODS AND MAKE INTO MODULES -- NOT SURE IF REQUIRED - SAID METHODS ARE ONLY USED BY ONE CLASS    
-    ##ADD COLOR TO TITLE AND LOADING SCREENS IF POSSIBLE
-    ##GOOD JOB FRANK, IT LOOKS PRETTY GOOD. 2 LEVELS DEEP AND A FUN THEME
+    ##THIS WEEKENED:  
+    ##ADD COLOR TO TITLE AND LOADING SCREENS
 
     def download
         people_array = [1, 2, 3, 14, 13, 10, 25, 5, 20, 27]
@@ -62,7 +60,6 @@ class StarWarsFacts::CLI
         if input == "p"
             process
             @planets = StarWarsFacts::Planets.all[choice.to_i-1]
-            
             puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
             puts "=-=-=-=-=-=-TARGET PLANET : #{@planets.name.upcase}-=-=-=-=-=-="
             puts "POPULATION :: #{@planets.population.upcase}"
@@ -85,11 +82,12 @@ class StarWarsFacts::CLI
         puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
         puts "TO EXIT DATABASE PLEASE ENTER 'EXIT'"
         input = gets.strip.downcase
-        if input == "exit"
+        case input
+        when "exit"
             quit
-        elsif input == "y"
+        when "y"
             start
-        elsif input == "n"
+        when "n"
             upload
         else
             restart
@@ -188,11 +186,12 @@ class StarWarsFacts::CLI
         puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
         puts "TO EXIT DATABASE PLEASE ENTER 'EXIT'"
         input = gets.strip.downcase
-        if input == "exit"
+        case input
+        when "exit"
             quit
-        elsif input == "y"
+        when "y"
             start
-        elsif input == "n"
+        when "n"
             upload
         else
             restart
@@ -205,7 +204,7 @@ class StarWarsFacts::CLI
         puts Rainbow("=-=-=-=-").red + Rainbow("GALACTIC EMPIRE MOST WANTED DATABASE").white + Rainbow("-=-=-=-=-=").red
         puts Rainbow("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-").red
         puts ""
-        puts "TO BROWSE MOST WANTED SPACESHIPS : 'S'"
+        puts "TO BROWSE MOST WANTED STARSHIPS : 'S'"
         puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
         puts "TO BROWSE MOST WANTED FUGITIVES : 'F'" 
         puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"

@@ -34,6 +34,7 @@ class StarWarsFacts::CLI
     def display_people(choice)
         @people = StarWarsFacts::People.all[choice.to_i-1]
         process
+        
             puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
             puts "=-=-=-=-=-=-=    TARGET ID : #{choice}    =-=-=-=-=-=-="
             puts "NAME :: #{@people.name.upcase}"
@@ -61,6 +62,7 @@ class StarWarsFacts::CLI
         if input == "p"
             process
             @planets = StarWarsFacts::Planets.all[choice.to_i-1]
+            
             puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
             puts "=-=-=-=-=-=-TARGET PLANET : #{@planets.name.upcase}-=-=-=-=-=-="
             puts "POPULATION :: #{@planets.population.upcase}"
@@ -100,26 +102,10 @@ class StarWarsFacts::CLI
         puts "=-=-GALACTIC EMPIRE MOST WANTED FUGITIVES DATABASE-=-="
         puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
         puts ""
-        puts "ID : 1 - Luke Skywalker - CURRENT BOUNTY : 50,000,000 CREDITS" 
-        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
-        puts "ID : 2 - C3PO - CURRENT BOUNTY : 5,000,000 CREDITS" 
-        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
-        puts "ID : 3 - R2D2 - CURRENT BOUNTY : 10,000,000 CREDITS" 
-        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
-        puts "ID : 4 - Han Solo - CURRENT BOUNTY : 25,000,000 CREDITS"
-        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"  
-        puts "ID : 5 - Chewbacca - CURRENT BOUNTY : 25,000,000 CREDITS"
-        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" 
-        puts "ID : 6 - Obi Wan Kenobi - CURRENT BOUNTY : 40,000,000 CREDITS"
-        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" 
-        puts "ID : 7 - Lando Calrissian - CURRENT BOUNTY : 10,000,000 CREDITS"
-        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
-        puts "ID : 8 - Leia Organa - CURRENT BOUNTY : 45,000,000 CREDITS"
-        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" 
-        puts "ID : 9 - Master Yoda - CURRENT BOUNTY : 100,000,000 CREDITS"
-        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" 
-        puts "ID : 10 - General Ackbar - CURRENT BOUNTY : 3,000,000 CREDITS"
-        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" 
+        StarWarsFacts::People.all.each.with_index(1) do |people, index|
+            puts "ID : #{index} - #{people.name.upcase} - CURRENT BOUNTY : #{rand(10000000..50000000)} CREDITS"
+            puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
+        end
         puts "TO EXIT DATABASE PLEASE ENTER 'EXIT'"
         puts "          OR             "
         puts "PLEASE SELECT TARGET ID:"
@@ -162,10 +148,10 @@ class StarWarsFacts::CLI
         puts "=-=-GALACTIC EMPIRE MOST WANTED STARSHIPS DATABASE-=-="
         puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
         puts ""
-        puts "ID : 1 - Millenium Falcon - CURRENT BOUNTY : 30,000,000 CREDITS" 
-        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
-        puts "ID : 2 - Republic X-Wings - CURRENT BOUNTY : 5,000,000 CREDITS" 
-        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
+        StarWarsFacts::Starships.all.each.with_index(1) do |starships, index|
+            puts "ID : #{index} - #{starships.name.upcase} - CURRENT BOUNTY : #{rand(5000000..30000000)} CREDITS"
+            puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
+        end
         puts "TO EXIT DATABASE PLEASE ENTER 'EXIT'"
         puts "          OR             "
         puts "PLEASE SELECT TARGET ID:"

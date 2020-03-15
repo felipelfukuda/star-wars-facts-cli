@@ -6,11 +6,14 @@ class StarWarsFacts::CLI
     ##ABSTRACT WHATEVER POSSIBLE
 
     def download
+        #TO ADD OR REMOVE FROM FUGITIVE/STARSHIPS/PLANET
+        #PLEASE ADD OR REMOVE CORRESPONDING NUMBERS IN ARRAYS!
+        #EX. PEOPLE/1 = 1  PLANET/14 = 14 - STARSHIP/50 - 50
         people_array = [1, 2, 3, 14, 13, 10, 25, 5, 20, 27]
         people_array.map { |index| StarWarsFacts::API.get_people(index) }
         planet_array = [1, 1, 8, 22, 14, 20, 30, 2, 28, 31]
         planet_array.map { |index| StarWarsFacts::API.get_planet(index)}
-        starship_array = [10, 12]
+        starship_array = [10, 12, 11, 28, 29, 48, 31, 17, 23, 27]
         starship_array.map { |index| StarWarsFacts::API.get_starship(index)}
         start
     end

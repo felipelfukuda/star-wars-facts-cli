@@ -11,7 +11,7 @@ require "StarWarsFacts/starships"
 #dependencies
 require "pry"
 require "httparty"
-require "rainbow/refinement"
+require "rainbow"
 
 module StarWarsFacts
   class Error < StandardError; end

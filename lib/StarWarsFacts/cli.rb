@@ -5,13 +5,14 @@ class StarWarsFacts::CLI
     ##TAKE COMMON METHODS AND MAKE INTO MODULES -- NOT SURE IF REQUIRED - SAID METHODS ARE ONLY USED BY ONE CLASS    
     ##ADD COLOR TO TITLE AND LOADING SCREENS IF POSSIBLE
     ##GOOD JOB FRANK, IT LOOKS PRETTY GOOD. 2 LEVELS DEEP AND A FUN THEME
+    
     def download
         people_array = [1, 2, 3, 14, 13, 10, 25, 5, 20, 27]
         people_array.map { |index| StarWarsFacts::API.get_people(index) }
         planet_array = [1, 1, 8, 22, 14, 20, 30, 2, 28, 31]
         planet_array.map { |index| StarWarsFacts::API.get_planet(index)}
-        # starship_array = [10, 0]
-        # starship_array.map { |index| StarWarsFacts::API.get_starship(index)}
+        starship_array = [10, 12]
+        starship_array.map { |index| StarWarsFacts::API.get_starship(index)}
         start
     end
 
@@ -19,12 +20,9 @@ class StarWarsFacts::CLI
         title_screen
         input = gets.strip.downcase
         if input == "f"
-        fugitive_menu
+            fugitive_menu
         elsif input == "s"
-            puts "currently building!"
-            #display_starship(choice)
-            sleep 2
-            start
+            starship_menu
         elsif input == "exit"
             quit
         end
@@ -43,53 +41,12 @@ class StarWarsFacts::CLI
             puts "HAIR COLOR :: #{@people.hair_color.upcase}"
             puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
             puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
-        display_planet(choice)
+         display_planet(choice)
 
     end
 
-    def quit
-        puts ""
-        puts "PLEASE NOTE:"
-        puts ""
-        sleep 1
-        puts "SHOULD YOU PERISH IN THE ACQUISITION OF A BOUNTY, THE GALACTIC EMPIRE TAKES NO RESPONSIBILITY"
-        puts ""
-        sleep 1
-        puts "AS SUCH, FUNERAL COSTS MUST BE COVERED BY NEXT OF KIN OR INSUROR"
-        puts ""
-        sleep 1
-        puts "THE GALACTIC EMPIRE DOES NOT REIMBURSE ION PARTICLE FUEL USED FOR SPACE TRAVEL"
-        puts ""
-        sleep 1
-        puts "ALL CLAIMS FILED IN REGARDS TO NOTICES ABOVE MAY RESULT IN PERSONAL INJURY "
-        puts ""
-        sleep 1
-        puts "HAPPY HUNTING"
-        sleep 1
-        puts ""
-        exit
-    end
 
-    def restart
-        puts "INCORRECT INPUT DETECTED!"
-        sleep 1
-        puts "LOADING MAIN DATABASE......"
-        sleep 2
-        start
-    end
 
-    def process
-        sleep 1
-        puts "PROCESSING YOUR INQUIRY"
-        puts ''
-        sleep 2
-        puts "LOADING..."
-        puts ''
-        sleep 2
-        puts "LOADING..."
-        sleep 2
-
-    end
 
     def display_planet(choice)
         puts "FOR INFORMATION ON TARGET HOME PLANET PLEASE ENTER 'P'"
@@ -130,33 +87,13 @@ class StarWarsFacts::CLI
             start
         elsif input == "n"
             upload
+        else
+            restart
         end
     end
 
-    def upload
-        puts "UPLOADING BOUNTY TO YOUR TRACKING FOB"
-        puts ""
-        sleep 1
-        puts "UPLOADING..."
-        puts ""
-        sleep 1
-        puts "UPLOADING..."
-        puts ""
-        sleep 1
-        puts "UPLOAD COMPLETE!"
-        puts ""
-        sleep 1
-        puts "IF SUCCESSFUL PLEASE RETRIEVE BOUNTY AT NEAREST GALACTIC EMPIRE OUTPOST"
-        puts ""
-        sleep 1
-        puts "THE GALACTIC EMPIRE IS NOT LIABLE FOR YOUR SAFETY AND CLAIMS NO RESPONSIBILITY SHOULD YOU SUFFER DEATH OR INJURY"
-        puts ""
-        sleep 1
-        puts "HAPPY HUNTING"
-        exit
-    end
-
     def fugitive_menu
+        process
         puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
         puts "=-=-GALACTIC EMPIRE MOST WANTED FUGITIVES DATABASE-=-="
         puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
@@ -218,22 +155,60 @@ class StarWarsFacts::CLI
     end
 
     def starship_menu
-
+        process
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
+        puts "=-=-GALACTIC EMPIRE MOST WANTED STARSHIPS DATABASE-=-="
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
+        puts ""
+        puts "ID : 1 - Millenium Falcon - CURRENT BOUNTY : 30,000,000 CREDITS" 
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
+        puts "ID : 2 - Republic X-Wings - CURRENT BOUNTY : 5,000,000 CREDITS" 
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
+        puts "TO EXIT DATABASE PLEASE ENTER 'EXIT'"
+        puts "          OR             "
+        puts "PLEASE SELECT TARGET ID:"
+        input = gets.strip.downcase
+        if ("1".."10").include?(input)
+            case input
+                when "1"
+                    choice = 1
+                when "2"
+                    choice = 2
+                end
+            elsif input == "exit"
+                quit
+            else
+                restart
+            end
+        display_starship(choice)
+    end
 
     def display_starship(choice)
         @starships = StarWarsFacts::Starships.all[choice.to_i-1]
-        #millenium falcon : starships/10
-        
-
-
-
-
+        process
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
+        puts "=-=-=-=-=-=-=    TARGET ID : #{choice}    =-=-=-=-=-=-="
+        puts "NAME :: #{@starships.name.upcase}"
+        puts "MODEL :: #{@starships.model.upcase}"
+        puts "STARSHIP CLASS :: #{@starships.starship_class.upcase}"
+        puts "CREW :: #{@starships.crew.upcase}"
+        puts "MAX ATMOSPHERING SPEED :: #{@starships.max_atmosphering_speed.upcase}"
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
+        puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
         puts "TO VIEW ANOTHER BOUNTY : 'Y'"
         puts "TO UPLOAD BOUNTY TO YOUR TRACKING FOB : 'N'"
         puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
         puts "TO EXIT DATABASE PLEASE ENTER 'EXIT'"
         input = gets.strip.downcase
-
+        if input == "exit"
+            quit
+        elsif input == "y"
+            start
+        elsif input == "n"
+            upload
+        else
+            restart
+        end
     end
 
 
@@ -249,4 +224,88 @@ class StarWarsFacts::CLI
         puts "TO EXIT DATABASE PLEASE ENTER 'EXIT'"
         puts "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
     end
+
+    def upload
+        sleep 1
+        puts "UPLOADING BOUNTY TO YOUR TRACKING FOB"
+        puts ""
+        sleep 1
+        puts "UPLOADING..."
+        puts ""
+        sleep 1
+        puts "UPLOADING..."
+        puts ""
+        sleep 1
+        puts "UPLOAD COMPLETE!"
+        puts ""
+        sleep 1
+        puts "IF SUCCESSFUL PLEASE RETRIEVE BOUNTY AT NEAREST GALACTIC EMPIRE OUTPOST"
+        puts ""
+        sleep 1
+        puts "SHOULD YOU PERISH IN THE ACQUISITION OF A BOUNTY, THE GALACTIC EMPIRE TAKES NO RESPONSIBILITY"
+        puts ""
+        sleep 1
+        puts "AS SUCH, FUNERAL COSTS MUST BE COVERED BY NEXT OF KIN OR INSUROR"
+        puts ""
+        sleep 1
+        puts "THE GALACTIC EMPIRE DOES NOT REIMBURSE ION PARTICLE FUEL USED FOR SPACE TRAVEL"
+        puts ""
+        sleep 1
+        puts "ALL CLAIMS FILED IN REGARDS TO NOTICES ABOVE MAY RESULT IN PERSONAL INJURY "
+        puts ""
+        sleep 1
+        puts "HAPPY HUNTING"
+        sleep 1
+        puts ""
+        exit
+    end
+
+
+    def process
+        sleep 1
+        puts "PROCESSING YOUR INQUIRY"
+        puts ''
+        sleep 2
+        puts "LOADING..."
+        puts ''
+        sleep 2
+        puts "LOADING..."
+        sleep 2
+
+    end
+
+    def restart
+        sleep 1
+        puts "INCORRECT INPUT DETECTED!"
+        sleep 1
+        puts "LOADING MAIN DATABASE......"
+        sleep 2
+        start
+    end
+
+    def quit
+        sleep 1
+        puts ""
+        puts "PLEASE NOTE:"
+        puts ""
+        sleep 1
+        puts "SHOULD YOU PERISH IN THE ACQUISITION OF A BOUNTY, THE GALACTIC EMPIRE TAKES NO RESPONSIBILITY"
+        puts ""
+        sleep 1
+        puts "AS SUCH, FUNERAL COSTS MUST BE COVERED BY NEXT OF KIN OR INSUROR"
+        puts ""
+        sleep 1
+        puts "THE GALACTIC EMPIRE DOES NOT REIMBURSE ION PARTICLE FUEL USED FOR SPACE TRAVEL"
+        puts ""
+        sleep 1
+        puts "ALL CLAIMS FILED IN REGARDS TO NOTICES ABOVE MAY RESULT IN PERSONAL INJURY "
+        puts ""
+        sleep 1
+        puts "HAPPY HUNTING"
+        sleep 1
+        puts ""
+        exit
+    end
+
+
 end

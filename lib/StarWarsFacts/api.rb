@@ -39,7 +39,7 @@ class StarWarsFacts::API
         name: @data_hash["name"],
         model: @data_hash["model"],
         starship_class: @data_hash["starship_class"],
-        hypderdrive_rating: @data_hash["hypderdrive_rating"],
+        crew: @data_hash["crew"],
         max_atmosphering_speed: @data_hash["max_atmosphering_speed"]
         }
         StarWarsFacts::Starships.new(planet_hash)

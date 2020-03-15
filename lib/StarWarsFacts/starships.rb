@@ -1,6 +1,6 @@
 class StarWarsFacts::Starships
 
-    attr_accessor :name, :model, :max_atmosphering_speed, :starship_class, :hypderdrive_rating
+    attr_accessor :name, :model, :max_atmosphering_speed, :starship_class, :crew
 
     @@all = []
 

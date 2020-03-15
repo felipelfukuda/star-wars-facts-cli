@@ -12,7 +12,6 @@ require "StarWarsFacts/starships"
 require "pry"
 require "httparty"
 require "rainbow/refinement"
-require "rainbow"
 
 module StarWarsFacts
   class Error < StandardError; end

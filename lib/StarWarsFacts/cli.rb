@@ -109,28 +109,7 @@ class StarWarsFacts::CLI
         puts "PLEASE SELECT TARGET ID:"
         input = gets.strip.downcase
         if ("1".."10").include?(input)
-            case input
-                when "1"
-                    choice = 1
-                when "2"
-                    choice = 2
-                when "3"
-                    choice = 3
-                when "4"
-                    choice = 4
-                when "5"
-                    choice = 5
-                when "6"
-                    choice = 6
-                when "7"
-                    choice = 7
-                when "8"
-                    choice = 8
-                when "9"
-                    choice = 9
-                when "10"
-                    choice = 10
-                end
+           choice = input.to_i
         elsif input == "exit"
             quit
         else
@@ -138,6 +117,7 @@ class StarWarsFacts::CLI
         end
 
         display_people(choice)
+        binding.pry
     end
 
     def starship_menu
@@ -155,17 +135,12 @@ class StarWarsFacts::CLI
         puts "PLEASE SELECT TARGET ID:"
         input = gets.strip.downcase
         if ("1".."10").include?(input)
-            case input
-                when "1"
-                    choice = 1
-                when "2"
-                    choice = 2
-                end
-            elsif input == "exit"
-                quit
-            else
-                restart
-            end
+            choice = input.to_i
+        elsif input == "exit"
+            quit
+        else
+            restart
+        end
         display_starship(choice)
     end
 

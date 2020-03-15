@@ -16,6 +16,7 @@ class StarWarsFacts::CLI
     end
 
     def start
+        at_st
         title_screen
         input = gets.strip.downcase
         if input == "f"
@@ -269,5 +270,23 @@ class StarWarsFacts::CLI
         puts ""
         exit
     end
+
+    def at_st
+        puts Rainbow("                          /-----^\ ").white
+        puts Rainbow("                         /==     | ").white
+        puts Rainbow("                     +-o/   ==B) | ").white           
+        puts Rainbow("                       /__/-----| ").white       
+        puts Rainbow("                          =====  ").white                      
+        puts Rainbow("                          ( \ \ \   ").white     
+        puts Rainbow("                           \ \ \ \  ").white
+        puts Rainbow("                            ( ) ( )  ").white    
+        puts Rainbow("                            / /  \ \ ").white       
+        puts Rainbow("                          / /     | | ").white       
+        puts Rainbow("                          /        | ").white 
+        puts Rainbow("                       _^^oo    _^^oo ").white
+
+    end
+
+
 
 end

@@ -2,7 +2,8 @@ class StarWarsFacts::CLI
 
 
     ##THIS WEEKENED:  
-    ##ADD COLOR TO TITLE AND LOADING SCREENS
+    ##ADD COLOR TO TITLE AND LOADING SCREENS (NOT NECESSARY)
+    ##ABSTRACT WHATEVER POSSIBLE
 
     def download
         people_array = [1, 2, 3, 14, 13, 10, 25, 5, 20, 27]
@@ -117,7 +118,7 @@ class StarWarsFacts::CLI
         end
 
         display_people(choice)
-        binding.pry
+
     end
 
     def starship_menu

@@ -17,14 +17,4 @@ class StarWarsFacts::Starships
         self.class.all << self
     end
 
-
-    def self.find_by_name(name)
-        Starships.all.select {|bounty| bounty.name == name}
-    end
-    #custom instance methods
-
-
-
-
-
 end

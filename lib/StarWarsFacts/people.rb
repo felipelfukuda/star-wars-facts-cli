@@ -16,13 +16,4 @@ class StarWarsFacts::People
     end
 
 
-    def self.find_by_name(name)
-        People.all.select {|bounty| bounty.name == name}
-    end
-    #custom instance methods
-
-
-
-
-
 end

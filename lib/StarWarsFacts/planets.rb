@@ -15,14 +15,4 @@ class StarWarsFacts::Planets
         self.class.all << self
     end
 
-
-    def self.find_by_name(name)
-        Planets.all.select {|bounty| bounty.name == name}
-    end
-    #custom instance methods
-
-
-
-
-
 end
